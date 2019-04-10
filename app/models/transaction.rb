@@ -2,7 +2,7 @@ require 'json'
 require 'base64'
 require 'rbnacl'
 
-module FiBuy
+module Fibuy
     class Transaction
         STORE_DIR = 'app/db/store/'
 
@@ -16,6 +16,7 @@ module FiBuy
             @member = new_document['member']
             @limit_member = new_document['limit_member']
             @commodity_url = new_document['commodity_url']
+        end
 
         attr_reader :id, :title, :description, :price, :due_date, :leader, :member, :limit_member, :commodity_url
 
