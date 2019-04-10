@@ -7,9 +7,9 @@ API to store and retrieve confidential development files (configuration, transac
 All routes return Json
 
 - GET `/`: Root route shows if Web API is running
-- GET `api/v1/transaction/`: returns all transaction IDs
-- GET `api/v1/transaction/[ID]`: returns details about a single document with given ID
-- POST `api/v1/transaction/`: creates a new document
+- GET `api/v1/transactions/`: returns all transaction IDs
+- GET `api/v1/transactions/[ID]`: returns details about a single document with given ID
+- POST `api/v1/transactions/`: creates a new document
 
 ## Install
 

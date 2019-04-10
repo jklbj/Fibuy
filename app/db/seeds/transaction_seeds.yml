@@ -1,5 +1,6 @@
 ---
-- title: 'buy cookies'
+- id: '464678'
+  title: 'buy cookies'
   description: 'LBJ1 transaction'
   price: '500'
   due_date: '2019/04/10'
@@ -7,7 +8,8 @@
   member: 'KevinYang'
   limit_member: '5'
   commidity_url: 'www.google.com'
-- title: 'buy candies'
+- id: '464646'
+  title: 'buy candies'
   description: 'LBJ2 transaction'
   price: '300'
   due_date: '2019/04/10'
