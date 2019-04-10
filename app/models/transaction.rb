@@ -2,7 +2,7 @@ require 'json'
 require 'base64'
 require 'rbnacl'
 
-module Fibuy
+module FiBuy
     class Transaction
         STORE_DIR = 'app/db/store/'
 

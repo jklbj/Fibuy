@@ -5,7 +5,7 @@ require 'json'
 
 require_relative '../models/transaction'
 
-module Fibuy
+module FiBuy
   # Web controller for Fibuy API
   class Api < Roda
     plugin :environments
@@ -40,10 +40,10 @@ module Fibuy
 
             # POST api/v1/transactions
             routing.post do
-              new_time = JSON.parse(routing.body.read)
+              new_data = JSON.parse(routing.body.read)
               new_tran = Transaction.new(new_data)
 
-              if new_doc.save
+              if new_tran.save
                 response.status = 201
                 { message: 'Transaction saved', id: new_tran.id }.to_json
               else
