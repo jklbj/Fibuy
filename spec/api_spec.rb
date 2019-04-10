@@ -48,14 +48,14 @@ describe 'Test Credence Web API' do
     end
 
     it 'SAD: should return error if unknown document requested' do
-      get '/api/v1/documents/foobar'
+      get '/api/v1/transaction/foobar'
 
       _(last_response.status).must_equal 404
     end
 
     it 'HAPPY: should be able to create new documents' do
       req_header = { 'CONTENT_TYPE' => 'application/json' }
-      post 'api/v1/documents', DATA[1].to_json, req_header
+      post 'api/v1/transaction', DATA[1].to_json, req_header
 
       _(last_response.status).must_equal 201
     end
