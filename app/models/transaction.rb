@@ -23,7 +23,7 @@ module Fibuy
         def to_json(options = {})
             JSON(
                 {
-                    type: 'document',
+                    type: 'transaction',
                     id: id,
                     title: title,
                     description: description,
