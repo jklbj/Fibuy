@@ -21,7 +21,7 @@ describe 'Test Transaction Web API' do
     Dir.glob('app/db/store/*.txt').each { |filename| FileUtils.rm(filename) }
   end
 
-  it 'should find the root route' do
+  it 'should find the rot route' do
     get '/'
     _(last_response.status).must_equal 200
   end
