@@ -6,15 +6,15 @@ require 'rack/test'
 require 'yaml'
 
 require_relative '../app/controllers/app'
-require_relative '../app/models/transaction'
+require_relative '../app/models/calendar'
 
 def app
-    FiBuy::Api
+    CGroup2::Api
 end
 
-DATA = YAML.safe_load File.read('app/db/seeds/transaction_seeds.yml')
+DATA = YAML.safe_load File.read('app/db/seeds/calendar_seeds.yml')
 
-describe 'Test Transaction Web API' do
+describe 'Test Calendar Web API' do
   include Rack::Test::Methods
 
   before do
@@ -26,36 +26,36 @@ describe 'Test Transaction Web API' do
     _(last_response.status).must_equal 200
   end
 
-  describe 'Handle transactions' do
-    it 'HAPPY: should be able to get list of all transaction' do
-      FiBuy::Transaction.new(DATA[0]).save
-      FiBuy::Transaction.new(DATA[1]).save
+  describe 'Handle calendars' do
+    it 'HAPPY: should be able to get list of all calendar' do
+      CGroup2::Calendar.new(DATA[0]).save
+      CGroup2::Calendar.new(DATA[1]).save
 
-      get 'api/v1/transactions'
+      get 'api/v1/calendars'
       result = JSON.parse last_response.body
-      _(result['transaction_ids'].count).must_equal 2
+      _(result['calendar_id'].count).must_equal 2
     end
 
-    it 'HAPPY: should be able to get details of a single transaction' do
-      FiBuy::Transaction.new(DATA[1]).save
+    it 'HAPPY: should be able to get details of a single calendar' do
+      CGroup2::Calendar.new(DATA[1]).save
       id = Dir.glob('app/db/store/*.txt').first.split(%r{[/\.]})[3]
 
-      get "/api/v1/transactions/#{id}"
+      get "/api/v1/calendars/#{id}"
       result = JSON.parse last_response.body
 
       _(last_response.status).must_equal 200
-      _(result['id']).must_equal id
+      _(result['calendar_id']).must_equal id
     end
 
-    it 'SAD: should return error if unknown transaction requested' do
-      get '/api/v1/transactions/foobar'
+    it 'SAD: should return error if unknown calendar requested' do
+      get '/api/v1/calendars/foobar'
 
       _(last_response.status).must_equal 404
     end
 
-    it 'HAPPY: should be able to create new transactions' do
+    it 'HAPPY: should be able to create new calendars' do
       req_header = { 'CONTENT_TYPE' => 'application/json' }
-      post 'api/v1/transactions', DATA[1].to_json, req_header
+      post 'api/v1/calendars', DATA[1].to_json, req_header
 
       _(last_response.status).must_equal 201
     end
